@@ -1,0 +1,21 @@
+---
+pack: itrp
+name: ITRP Webhook
+description: Test QA ITRP
+enabled: true
+type:
+  parameters: {}
+  ref: standard
+trigger:
+  parameters:
+    url: itrp
+  type: core.st2.webhook
+criteria: {}
+action:
+  ref: core.inject_trigger
+  parameters:
+    trigger: 'itrp.xxx'
+    payload: '{{ trigger.body | tojson }}'
+#  ref: core.echo
+#  parameters:
+#     message: '{ "trigger": "{{ trigger.body.event }}", ...{{ trigger.body | tojson }}... }'
